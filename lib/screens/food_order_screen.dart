@@ -201,36 +201,44 @@ class _FoodOrderScreenState extends State<FoodOrderScreen> {
   }
 
   Widget _buildBottomBar({required double screenWidth}) {
-    return Container(
-      width: double.infinity,
-      height: screenWidth * 0.2,
-      decoration: const BoxDecoration(
-        color: Color(0xFF9295B3),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      child: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Action pour "Commander"
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF191A2D),
-            minimumSize: Size(screenWidth * 0.8, screenWidth * 0.15),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: double.infinity,
+        height: screenWidth * 0.2,
+        decoration: BoxDecoration(
+          color: const Color(0xFF9295B3),
+          border: Border(
+            top: BorderSide(
+              color: Colors.white, // Bordure blanche
+              width: 1.0, // Épaisseur de la bordure
             ),
           ),
-          child: Text(
-            "Commander",
-            style: TextStyle(
-              fontFamily: "Orbitron",
-              fontSize: screenWidth * 0.06,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/welcome');
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF191A2D),
+              minimumSize: Size(screenWidth * 0.75, screenWidth * 0.15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Text(
+              "Commander",
+              style: TextStyle(
+                fontFamily: "Orbitron",
+                fontSize: screenWidth * 0.06,
+                fontWeight: FontWeight.w800,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
