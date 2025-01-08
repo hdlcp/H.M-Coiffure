@@ -12,6 +12,7 @@ dependencies:
 
   flutter_spinkit: ^5.2.0
   cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -28,7 +29,36 @@ flutter:
 
   uses-material-design: true
 
+  fonts:
+    - family: Orbitron
+      fonts:
+        - asset: assets/fonts/Orbitron-Regular.ttf
+        - asset: assets/fonts/Orbitron-Bold.ttf
+          weight: 700
+    - family: Permanent Marker
+      fonts:
+        - asset: assets/fonts/PermanentMarker-Regular.ttf
+
   assets:
+     # UI elements
     - assets/images/rectangle_haut.png
     - assets/images/rectangle_bas.png
+    - assets/images/bienvenue_hm.png
     - assets/images/logo_hm.png
+
+    # Category images
+    - assets/images/restaurant.png
+    - assets/images/salon_coiffure.png
+
+    # People images
+    - assets/images/jean.png
+    - assets/images/romeo.png
+    - assets/images/simon.png
+    - assets/images/patricia.png
+
+    # Food images
+    - assets/images/food_0.png
+    - assets/images/food_1.png
+
+    # Icons
+    - assets/icons/select_icon.svg

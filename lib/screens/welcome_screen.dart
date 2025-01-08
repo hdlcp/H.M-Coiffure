@@ -105,7 +105,7 @@ class WelcomeScreen extends StatelessWidget {
                       imagePath: 'assets/images/restaurant.png',
                       label: "Restaurant",
                       onTap: () {
-                        // Action pour "Restaurant"
+                        Navigator.pushNamed(context, '/food_order');
                       },
                     ),
                   ],
