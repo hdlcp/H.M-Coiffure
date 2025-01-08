@@ -1,8 +1,25 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../app/app_routes.dart';
 
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends StatefulWidget {
+  // Changement ici
   const LoadingScreen({super.key});
+
+  @override
+  State<LoadingScreen> createState() => _LoadingScreenState();
+}
+
+class _LoadingScreenState extends State<LoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Redirige après 3 secondes
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, AppRoutes.welcome);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +57,16 @@ class LoadingScreen extends StatelessWidget {
                   // Logo principal
                   Image.asset(
                     'assets/images/logo_hm.png', // Chemin de votre logo
-                    width: 300,
-                    height: 300,
+                    width: 337,
+                    height: 218,
                   ),
-                  const SizedBox(height: 0),
+                  const SizedBox(
+                      height:
+                          20), // Correction de l'espace entre le logo et l'animation
                   // Animation de chargement
                   const SpinKitThreeBounce(
                     color: Color(0xFF191A2D),
-                    size: 30.0,
+                    size: 25.0,
                   ),
                 ],
               ),
