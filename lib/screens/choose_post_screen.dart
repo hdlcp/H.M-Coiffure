@@ -23,25 +23,59 @@ class _ChoosePostScreenState extends State<ChoosePostScreen> {
 
     final int newPosition = _queues[name]!;
 
-    // Afficher le message de confirmation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+    // Afficher une boîte de dialogue pour confirmer l'enregistrement
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        title: const Text(
+          "Enregistrement effectué",
+          style: TextStyle(
+            fontFamily: 'Orbitron',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         content: Text(
           "Vous avez été bien enregistré chez $name en position $newPosition.",
           style: const TextStyle(
+            fontFamily: 'Orbitron',
             fontSize: 14,
-            fontFamily: "Orbitron",
           ),
         ),
-        backgroundColor: const Color(0xFF191A2D),
-        duration: const Duration(seconds: 3),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF191A2D), // Couleur violette
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Bord arrondi
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context); // Ferme la boîte de dialogue
+                Navigator.pushNamed(
+                    context, '/welcome'); // Redirige vers la page suivante
+              },
+              child: const Text(
+                "OK",
+                style: TextStyle(
+                  fontFamily: 'Orbitron',
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
-
-    // Redirection vers un autre écran après une petite attente
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/welcome');
-    });
   }
 
   @override

@@ -8,109 +8,116 @@ class WelcomeScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: Colors.white, // Couleur de fond blanche
-      body: Center(
-        child: SingleChildScrollView(
-          // Rend la page scrollable
-          child: Container(
-            width: screenWidth * 0.97, // 90% de la largeur de l'écran
-            height: screenHeight * 0.9, // 90% de la hauteur de l'écran
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 60),
-            decoration: BoxDecoration(
-              color: const Color(0xFF9295B3), // Couleur violette
-              borderRadius: BorderRadius.circular(60),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Ombre légère
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Image "Bienvenue à H.M"
-                Image.asset(
-                  'assets/images/bienvenue_hm.png',
-                  width: screenWidth * 0.9,
-                  height: screenHeight * 0.15,
-                  fit: BoxFit.contain,
-                ),
-
-                const SizedBox(height: 32),
-
-                // Champ de saisie
-                TextField(
-                  style: const TextStyle(
-                    color: Color(0xFF191A2D),
-                    fontFamily: "Orbitron",
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context)
+            .unfocus(); // Masque le clavier lorsqu'on clique ailleurs
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white, // Couleur de fond blanche
+        body: Center(
+          // Centrage global du contenu
+          child: SingleChildScrollView(
+            // Rend la page scrollable
+            child: Container(
+              width: screenWidth * 0.97, // 90% de la largeur de l'écran
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 60),
+              decoration: BoxDecoration(
+                color: const Color(0xFF9295B3), // Couleur violette
+                borderRadius: BorderRadius.circular(60),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2), // Ombre légère
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
-                  decoration: InputDecoration(
-                    hintText: "Entrez votre pseudo-nom...",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 20,
-                    ),
-                    hintStyle: const TextStyle(
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Image "Bienvenue à H.M"
+                  Image.asset(
+                    'assets/images/bienvenue_hm.png',
+                    width: screenWidth * 0.9,
+                    height: screenHeight * 0.15,
+                    fit: BoxFit.contain,
+                  ),
+
+                  const SizedBox(height: 32),
+
+                  // Champ de saisie
+                  TextField(
+                    style: const TextStyle(
                       color: Color(0xFF191A2D),
                       fontFamily: "Orbitron",
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    cursorColor: Color(0xFF191A2D),
+                    decoration: InputDecoration(
+                      hintText: "Entrez votre pseudo-nom...",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 15,
+                        horizontal: 20,
+                      ),
+                      hintStyle: const TextStyle(
+                        color: Color(0xFF191A2D),
+                        fontFamily: "Orbitron",
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Texte d'instruction
-                const Text(
-                  "Veuillez choisir ce que vous souhaitez faire",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF191A2D),
-                    fontFamily: "Orbitron",
-                    letterSpacing: 0.05,
+                  // Texte d'instruction
+                  const Text(
+                    "Veuillez choisir ce que vous souhaitez faire",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF191A2D),
+                      fontFamily: "Orbitron",
+                      letterSpacing: 0.05,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Les deux boutons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildButton(
-                      context,
-                      imagePath: 'assets/images/salon_coiffure.png',
-                      label: "Salon de coiffure",
-                      onTap: () {
-                        Navigator.pushNamed(context, '/choose_post');
-                      },
-                    ),
-                    const SizedBox(width: 6),
-                    _buildButton(
-                      context,
-                      imagePath: 'assets/images/restaurant.png',
-                      label: "Restaurant",
-                      onTap: () {
-                        Navigator.pushNamed(context, '/food_order');
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                  // Les deux boutons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildButton(
+                        context,
+                        imagePath: 'assets/images/salon_coiffure.png',
+                        label: "Salon de coiffure",
+                        onTap: () {
+                          Navigator.pushNamed(context, '/choose_post');
+                        },
+                      ),
+                      const SizedBox(width: 6),
+                      _buildButton(
+                        context,
+                        imagePath: 'assets/images/restaurant.png',
+                        label: "Restaurant",
+                        onTap: () {
+                          Navigator.pushNamed(context, '/food_order');
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

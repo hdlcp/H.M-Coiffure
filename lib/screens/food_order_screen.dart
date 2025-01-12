@@ -31,6 +31,61 @@ class _FoodOrderScreenState extends State<FoodOrderScreen> {
   final Map<int, int> quantities = {};
   final Map<int, bool> isSelected = {};
 
+  void _showOrderConfirmation() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        title: const Text(
+          "Commande enregistrée",
+          style: TextStyle(
+            fontFamily: 'Orbitron',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text(
+          "Votre commande a été enregistrée avec succès.",
+          style: TextStyle(
+            fontFamily: 'Orbitron',
+            fontSize: 14,
+          ),
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF191A2D),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context); // Ferme la boîte de dialogue
+                Navigator.pushNamed(
+                    context, '/welcome'); // Redirige vers l'écran suivant
+              },
+              child: const Text(
+                "OK",
+                style: TextStyle(
+                  fontFamily: 'Orbitron',
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -136,8 +191,9 @@ class _FoodOrderScreenState extends State<FoodOrderScreen> {
                     'assets/icons/select_icon.svg',
                     width: screenWidth * 0.1,
                     height: screenWidth * 0.1,
-                    color:
-                        isSelected[index] == true ? Colors.green : Colors.white,
+                    color: isSelected[index] == true
+                        ? Color(0xFF191A2D)
+                        : Colors.white,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -221,9 +277,7 @@ class _FoodOrderScreenState extends State<FoodOrderScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Center(
           child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/welcome');
-            },
+            onPressed: _showOrderConfirmation,
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF191A2D),
               minimumSize: Size(screenWidth * 0.75, screenWidth * 0.15),
